@@ -2419,7 +2419,8 @@ class FastAPIServer(Super):
             if update_data:
                 await collection.update_one(
                     {"user_id": request.user_id},
-                    {"$set": update_data})
+                    {"$set": update_data},
+                    upsert=True)
         response = Response()
         return response
 
@@ -2446,6 +2447,7 @@ class FastAPIServer(Super):
             api_keys = await collection.find_one(
                 {"user_id": user_id},
                 {"_id": 0})
+        api_keys = api_keys or {}
         return_set = set()
         for key, value in LLM_REQUIREMENTS.items():
             if all(api_keys.get(key, '') != '' for key in value):
@@ -2480,6 +2482,7 @@ class FastAPIServer(Super):
             api_keys = await collection.find_one(
                 {"user_id": user_id},
                 {"_id": 0})
+        api_keys = api_keys or {}
         return_set = set()
         for key, value in ASR_REQUIREMENTS.items():
             if len(value) == 0:
@@ -2516,6 +2519,7 @@ class FastAPIServer(Super):
             api_keys = await collection.find_one(
                 {"user_id": user_id},
                 {"_id": 0})
+        api_keys = api_keys or {}
         return_set = set()
         for key, value in TTS_REQUIREMENTS.items():
             if len(value) == 0:
@@ -2560,6 +2564,7 @@ class FastAPIServer(Super):
             api_keys = await user_collection.find_one(
                 {"user_id": user_id},
                 {"_id": 0})
+            api_keys = api_keys or {}
             character_collection = db[self.mongodb_character_collection]
             character_config = await character_collection.find_one(
                 {"user_id": user_id,
@@ -2965,4 +2970,3 @@ class FastAPIServer(Super):
         """
         resp = JSONResponse(content='OK')
         return resp
-

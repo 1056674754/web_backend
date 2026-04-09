@@ -10,6 +10,7 @@ LLM_REQUIREMENTS = dict(
     xai={'xai_api_key'},
     anthropic={'anthropic_api_key'},
     gemini={'gemini_api_key'},
+    qwen={'qwen_api_key'},
     deepseek={'deepseek_api_key'},
     sensenova={'sensenova_ak', 'sensenova_sk'},
     sensechat={'sensechat_ak', 'sensechat_sk'},
@@ -18,6 +19,7 @@ LLM_REQUIREMENTS = dict(
 
 ASR_REQUIREMENTS = dict(
     openai={'openai_api_key'},
+    qwen={'qwen_api_key'},
     zoetrope=set(),
     softsugar={'softsugar_app_id', 'softsugar_app_key'},
     huoshan={'huoshan_app_id', 'huoshan_token'},

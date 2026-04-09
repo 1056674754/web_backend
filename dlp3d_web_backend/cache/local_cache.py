@@ -542,8 +542,14 @@ class LocalCache(Super):
         restpose_paths = dict()
         restpose_names = await self.restpose_reader.get_file_keys()
         for restpose_name in restpose_names:
-            restpose = await self.restpose_reader.get_file_by_key(
-                restpose_name)
+            try:
+                restpose = await self.restpose_reader.get_file_by_key(
+                    restpose_name)
+            except FileNotFoundError:
+                self.logger.warning(
+                    'Restpose file missing for %s, skipping cache sync entry.',
+                    restpose_name)
+                continue
             npz_path = os.path.join(self.restpose_files_dir.name,
                                     f'{restpose_name}.npz')
             with open(npz_path, 'wb') as f:
@@ -561,7 +567,13 @@ class LocalCache(Super):
         mesh_paths = dict()
         mesh_names = await self.mesh_reader.get_file_keys()
         for mesh_name in mesh_names:
-            mesh_bytes = await self.mesh_reader.get_file_by_key(mesh_name)
+            try:
+                mesh_bytes = await self.mesh_reader.get_file_by_key(mesh_name)
+            except FileNotFoundError:
+                self.logger.warning(
+                    'Mesh file missing for %s, skipping cache sync entry.',
+                    mesh_name)
+                continue
             mesh_path = os.path.join(self.mesh_files_dir.name,
                                      f'{mesh_name}.glb')
             with open(mesh_path, 'wb') as f:
@@ -579,8 +591,14 @@ class LocalCache(Super):
         joints_paths = dict()
         joints_file_names = await self.joints_meta_reader.get_file_keys()
         for joints_file_name in joints_file_names:
-            joints_bytes = await self.joints_meta_reader.get_file_by_key(
-                joints_file_name)
+            try:
+                joints_bytes = await self.joints_meta_reader.get_file_by_key(
+                    joints_file_name)
+            except FileNotFoundError:
+                self.logger.warning(
+                    'Joints meta file missing for %s, skipping cache sync entry.',
+                    joints_file_name)
+                continue
             joints_path = os.path.join(self.joints_files_dir.name,
                                      f'{joints_file_name}.json')
             with open(joints_path, 'wb') as f:
@@ -598,8 +616,14 @@ class LocalCache(Super):
         rigids_paths = dict()
         rigids_file_names = await self.rigids_meta_reader.get_file_keys()
         for rigids_file_name in rigids_file_names:
-            rigids_bytes = await self.rigids_meta_reader.get_file_by_key(
-                rigids_file_name)
+            try:
+                rigids_bytes = await self.rigids_meta_reader.get_file_by_key(
+                    rigids_file_name)
+            except FileNotFoundError:
+                self.logger.warning(
+                    'Rigids meta file missing for %s, skipping cache sync entry.',
+                    rigids_file_name)
+                continue
             rigids_path = os.path.join(self.rigids_files_dir.name,
                                      f'{rigids_file_name}.json')
             with open(rigids_path, 'wb') as f:
@@ -617,8 +641,14 @@ class LocalCache(Super):
         blendshapes_paths = dict()
         blendshapes_file_names = await self.blendshapes_meta_reader.get_file_keys()
         for blendshapes_file_name in blendshapes_file_names:
-            blendshapes_bytes = await self.blendshapes_meta_reader.get_file_by_key(
-                blendshapes_file_name)
+            try:
+                blendshapes_bytes = await self.blendshapes_meta_reader.get_file_by_key(
+                    blendshapes_file_name)
+            except FileNotFoundError:
+                self.logger.warning(
+                    'Blendshapes meta file missing for %s, skipping cache sync entry.',
+                    blendshapes_file_name)
+                continue
             blendshapes_path = os.path.join(self.blendshapes_files_dir.name,
                                      f'{blendshapes_file_name}.json')
             with open(blendshapes_path, 'wb') as f:

@@ -309,6 +309,7 @@ class UpdateUserConfigRequest(BaseModel):
     xai_api_key: str | None = None
     anthropic_api_key: str | None = None
     gemini_api_key: str | None = None
+    qwen_api_key: str | None = None
     deepseek_api_key: str | None = None
     sensenova_api_key: str | None = None
     sensenova_ak: str | None = None
@@ -321,6 +322,7 @@ class UpdateUserConfigRequest(BaseModel):
     softsugar_app_key: str | None = None
     huoshan_app_id: str | None = None
     huoshan_token: str | None = None
+    huoshan_secret_key: str | None = None
     sense_tts_api_key: str | None = None
     nova_tts_api_key: str | None = None
     elevenlabs_api_key: str | None = None

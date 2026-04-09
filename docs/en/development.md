@@ -148,10 +148,10 @@ Example structure:
     "tts_adapter": "elevenlabs",
     "voice": "your_voice_id",
     "voice_speed": 1.0,
-    "asr_adapter": "openai_realtime",
+    "asr_adapter": "qwen_realtime_asr",
     "classification_adapter": "openai_classification",
     "classification_model_override": "",
-    "conversation_adapter": "openai_agent",
+    "conversation_adapter": "qwen_agent",
     "conversation_model_override": "",
     "prompt": "Your custom character personality prompt here...",
     "reaction_adapter": "openai_reaction",
@@ -229,4 +229,3 @@ docker compose exec web_backend python tools/update_default_characters.py \
 After the tool completes successfully, all registered users (or the specified user) will have access to the new characters.
 
 ---
-
