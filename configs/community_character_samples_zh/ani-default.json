@@ -2,7 +2,7 @@
     "character_name": "Ani-系统默认",
     "scene_name": "vast",
     "avatar": "Ani-default",
-    "tts_adapter": "huoshan",
+    "tts_adapter": "doubao",
     "voice": "ICL_zh_female_wumeiyujie_tob",
     "voice_speed": 1.0,
     "asr_adapter": "openai_realtime",

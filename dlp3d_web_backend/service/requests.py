@@ -323,6 +323,10 @@ class UpdateUserConfigRequest(BaseModel):
     huoshan_app_id: str | None = None
     huoshan_token: str | None = None
     huoshan_secret_key: str | None = None
+    volcengine_api_key: str | None = None
+    volcengine_app_id: str | None = None
+    volcengine_token: str | None = None
+    volcengine_secret_key: str | None = None
     sense_tts_api_key: str | None = None
     nova_tts_api_key: str | None = None
     elevenlabs_api_key: str | None = None

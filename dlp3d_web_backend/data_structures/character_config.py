@@ -9,6 +9,7 @@ class CharacterConfig(BaseModel):
     configurations for various AI services, and emotional/relationship
     threshold settings for character behavior.
     """
+
     user_id: str
     character_id: str
     character_name: str
@@ -41,4 +42,4 @@ class CharacterConfig(BaseModel):
     disgust_threshold: int = 20
     surprise_threshold: int = 20
     shyness_threshold: int = 20
-
+    wake_word: str = ''

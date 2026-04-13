@@ -2450,7 +2450,7 @@ class FastAPIServer(Super):
         api_keys = api_keys or {}
         return_set = set()
         for key, value in LLM_REQUIREMENTS.items():
-            if all(api_keys.get(key, '') != '' for key in value):
+            if all(api_keys.get(key) not in (None, '') for key in value):
                 return_set.add(key)
         return GetAvailableProvidersResponse(options=return_set)
 
@@ -2487,7 +2487,7 @@ class FastAPIServer(Super):
         for key, value in ASR_REQUIREMENTS.items():
             if len(value) == 0:
                 return_set.add(key)
-            elif all(api_keys.get(key) != '' for key in value):
+            elif all(api_keys.get(key) not in (None, '') for key in value):
                 return_set.add(key)
         return GetAvailableProvidersResponse(options=return_set)
 
@@ -2524,7 +2524,7 @@ class FastAPIServer(Super):
         for key, value in TTS_REQUIREMENTS.items():
             if len(value) == 0:
                 return_set.add(key)
-            elif all(api_keys.get(key) != '' for key in value):
+            elif all(api_keys.get(key) not in (None, '') for key in value):
                 return_set.add(key)
         return GetAvailableProvidersResponse(options=return_set)
 
